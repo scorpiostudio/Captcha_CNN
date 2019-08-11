@@ -19,14 +19,14 @@ model_path保存训练的模型的路径，crack_captcha_model为模型文件名
 
 ### 验证码图片设置
 - IMAGE_HEIGHT = 26，设置验证码图片的高度，单位为像素值。
-- IMAGE_WIDTH = 80， 设置验证码图片的宽度，单位为像素值
-- MAX_CAPTCHA = 4，设置验证码的最长字符数
+- IMAGE_WIDTH = 80， 设置验证码图片的宽度，单位为像素值。
+- MAX_CAPTCHA = 4，设置验证码的最长字符数。
 
 ### 训练参数设置
 - 下列两个参数需要根据训练进行参数调优。
 - batch_size = 32，每一批次训练的数据样本数量，通常如果数据集的总样本规模在10000左右，
 设置为32，如果数据集的总样本规模在20000左右设置为64。
-- learning_rate = 0.001，学习率设置，提出设置为0.001，一般不能超过0.1
+- learning_rate = 0.001，学习率设置，设置为0.001，一般不能超过0.1。
 
 ## build_dataset模块
 - 本模块主要用于划分数据集，验证集、测试集、训练集规模的占比为1：1：8。
@@ -34,18 +34,18 @@ model_path保存训练的模型的路径，crack_captcha_model为模型文件名
 数据样本划分到test_data、validation_data、train_data目录下，避免人工划分导致的人为影响。
 
 ## utils模块
-- utils模块主要提供了根据函数
+- utils模块主要提供了工具函数。
 
 ## cnn_architecture模块
-- cnn_architecture模块主要用于构建CNN卷积神经网络模型架构
+- cnn_architecture模块主要用于构建CNN卷积神经网络模型架构。
 
 ## train_cnn_model模块
 - train_cnn_model模块用于根据训练集、验证集训练CNN卷积神经网络模型，并在验证集ACC到达
-一定值时保存训练模型，并验证集ACC达到临界值时最终完成训练。
+一定值时保存训练模型，并且验证集ACC达到临界值时最终完成训练。
 
 ## crack_captcha模块
-- crack_captcha模块用于根据测试集的测试数据样本对训练的CNN神经网络模型进行测试，并给出
-测试集ACC。
+- crack_captcha模块用于根据测试集的测试数据样本对训练的CNN神经网络模型进行测试，并输出
+测试集的ACC。
 
 # 使用流程
 - 将所有数据样本放到数据集data目录。
