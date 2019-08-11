@@ -51,7 +51,7 @@ def train_crack_captcha_cnn():
                 # 如果准确率大于80%，每隔1000步保存一次模型
                 if acc > 0.80 and step % 1000 == 0:
                     saver.save(sess, config.model_path, global_step=step)
-                # 如果准确率大于99.99%,保存模型,完成训练
+                # 如果准确率大于99.5%,保存模型,完成训练
                 if acc > 0.995:
                     saver.save(sess, config.model_path, global_step=step)
                     print("model path is ", config.model_path)

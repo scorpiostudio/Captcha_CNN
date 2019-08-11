@@ -1,8 +1,3 @@
-# 运行环境
-- Python 3.7
-- TensorFlow 2.0
-
-
 # 需求说明
 - 本项目主要解决验证码识别（CAPTCHA）问题。
 - 本项目使用深度学习CNN卷积神经网络对验证码进行识别，使用TensorFlow框架构建构建CNN网络
@@ -58,4 +53,5 @@ model_path保存训练的模型的路径，crack_captcha_model为模型文件名
 - 对config模块进行配置。
 - 执行train_cnn_model模块进行训练。
 - 执行crack_captcha模块进行测试。
+- 使用本项目提供的数据集，训练集ACC为0.9975，验证集ACC为0.995，测试集ACC为0.977。
 
