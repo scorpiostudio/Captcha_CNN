@@ -5,7 +5,7 @@ import math
 
 X = tf.placeholder(tf.float32, [None, config.IMAGE_HEIGHT * config.IMAGE_WIDTH])
 Y = tf.placeholder(tf.float32, [None, config.MAX_CAPTCHA * config.CHAR_SET_LEN])
-keep_prob = tf.placeholder(tf.float32)  # dropout
+keep_prob = tf.placeholder(tf.float32 , name='keep_prob')  # dropout
 
 
 # 定义CNN
@@ -16,10 +16,10 @@ def crack_captcha_cnn(w_alpha=0.01, b_alpha=0.1):
     :param b_alpha:
     :return:
     """
-    x = tf.reshape(X, shape=[-1, config.IMAGE_HEIGHT, config.IMAGE_WIDTH, 1])
+    x = tf.reshape(X, shape=[-1, config.IMAGE_HEIGHT, config.IMAGE_WIDTH, 1], name='input_x')
 
     # 3 conv layer
-    w_c1 = tf.Variable(w_alpha * tf.random_normal([3, 3, 1, 32]))
+    w_c1 = tf.Variable(w_alpha * tf.random_normal([3, 3, 1, 32]), name='w_c1')
     b_c1 = tf.Variable(b_alpha * tf.random_normal([32]))
     # 卷积 + Relu激活函数
     conv1 = tf.nn.relu(tf.nn.bias_add(tf.nn.conv2d(x, w_c1, strides=[1, 1, 1, 1], padding='SAME'), b_c1))
@@ -59,5 +59,6 @@ def crack_captcha_cnn(w_alpha=0.01, b_alpha=0.1):
     w_out = tf.Variable(w_alpha * tf.random_normal([1024, config.MAX_CAPTCHA * config.CHAR_SET_LEN]))
     b_out = tf.Variable(b_alpha * tf.random_normal([config.MAX_CAPTCHA * config.CHAR_SET_LEN]))
     # 全连接
-    out = tf.add(tf.matmul(dense, w_out), b_out)
-    return out
+    out = tf.add(tf.matmul(dense, w_out), b_out, name='out_y')
+    variable_dict = {'input_x':x, 'out_y':out, 'keep_prob': keep_prob}
+    return out, variable_dict

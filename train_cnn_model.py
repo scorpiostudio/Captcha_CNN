@@ -11,7 +11,7 @@ def train_crack_captcha_cnn():
     使用训练集路径的验证码训练CNN卷积神经网络
     :return:
     """
-    output = cnn_architecture.crack_captcha_cnn()
+    output, variable_dict = cnn_architecture.crack_captcha_cnn()
     # 计算损失
     loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=output, labels=cnn_architecture.Y))
     # 计算梯度
@@ -28,7 +28,7 @@ def train_crack_captcha_cnn():
 
     saver = tf.train.Saver()
     with tf.Session() as sess:
-        sess.run(tf.global_variables_initializer())
+        sess.run(tf.initialize_all_variables())
 
         step = 0
         while True:
